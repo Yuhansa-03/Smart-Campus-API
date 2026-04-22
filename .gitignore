@@ -1,0 +1,30 @@
+# Maven build output
+target/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE metadata
+.idea/
+.vscode/
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# Java bytecode and packaged archives
+*.class
+*.jar
+*.war
+*.ear
