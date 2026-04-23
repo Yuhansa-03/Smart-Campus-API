@@ -17,18 +17,8 @@ The system comprises three primary resources: Room, Sensor, and SensorReading. B
 | **Data Store** | In-memory ConcurrentHashMap / ArrayList |
 | **Packaging** | WAR |
 
-## Section 3 — Build & Run Instructions
 
-1. **Prerequisites**: Ensure you have Java 8+, Maven, GlassFish or Payara server, and Git installed on your system.
-2. **Clone the repo**: Run the exact command: `git clone https://github.com/hewag/Smart-Campus-API.git`
-3. **Navigate into the project folder**: Open your terminal and run `cd Smart-Campus-API`
-4. **Build the application**: Run the exact command: `mvn clean install`
-5. **Locate the WAR file**: After a successful build, the WAR file can be found in the `target/` folder as `smartCampus_w2153601-1.0-SNAPSHOT.war`.
-6. **Deploy to GlassFish/Payara**: Open the GlassFish/Payara admin console (typically at `http://localhost:4848`). Navigate to **Applications**, click **Deploy**, browse to select the WAR file from your `target/` directory, and save. Alternatively, open the project in NetBeans, add your server inside the Services tab, right-click the project, and select "Run" to auto-deploy.
-7. **Verify**: Open your browser and navigate to the base URL `http://localhost:8080/smartCampus_w2153601/api/v1` to verify the API discovery endpoint loads successfully.
-8. **Note**: All data is stored in-memory and will completely reset upon server restart.
-
-## Section 4 — Endpoint Reference
+## Section 3 — Endpoint Reference
 
 ### Group 1 — Discovery
 | Method | Endpoint | Description | Expected Response |
@@ -57,7 +47,7 @@ The system comprises three primary resources: Room, Sensor, and SensorReading. B
 | GET | `/api/v1/sensors/{sensorId}/readings` | Retrieves the history of readings for a specific sensor. | 200 OK |
 | POST| `/api/v1/sensors/{sensorId}/readings` | Records a new reading and updates the sensor's current value. | 201 Created |
 
-## Section 5 — curl Commands
+## Section 4 — curl Commands
 
 ```bash
 # 1. GET the discovery endpoint (Retrieves API metadata and links)
@@ -97,7 +87,7 @@ curl -X POST http://localhost:8080/smartCampus_w2153601/api/v1/sensors/99/readin
   -d '{"value": 0, "timestamp": "2026-04-22T10:45:00Z"}'
 ```
 
-## Section 6 — Error Response Format
+## Section 5 — Error Response Format
 
 All custom and global errors across the API are caught and returned in the following standardized JSON structure:
 
@@ -121,7 +111,7 @@ All custom and global errors across the API are caught and returned in the follo
 | **422 Unprocessable Entity** | Valid JSON syntax sent to the absolutely correct endpoint, but explicitly references a missing reference dependency (like `roomId`). |
 | **500 Internal Server Error** | Unexpected and completely unhandled server failure, gracefully caught globally to cleanly hide backend stack traces. |
 
-## Section 7 — Question Answers
+## Section 6 — Question Answers
 
 ### Q1.1 — JAX-RS Lifecycle
 By default, JAX-RS creates a new resource class instance for every incoming HTTP request, meaning it does not operate as a singleton. Whenever a client hits an endpoint, the runtime instantiates the relevant resource class, executes the matched method, and immediately discards the instance once the response is sent.
@@ -174,3 +164,5 @@ Additionally, attackers easily parse uniquely the specific deep framework module
 Continuously adding standard repetitive `Logger.info()` cleanly across every solitary endpoint deeply inevitably results in completely bloated and heavily repetitive identical codebase components fundamentally across virtually every class physically. Moreover, when new endpoints seamlessly cleanly expand into existence internally organically, it is painfully extremely easy frankly to completely forget inserting loggers manually accurately, deeply establishing silent network monitoring blind mapping.
 
 By structurally implementing specifically `ContainerRequestFilter` and `ContainerResponseFilter` universally natively inside the JAX-RS runtime universally dynamically, critical systemic logging automatically flawlessly executes natively organically instantly on literally every API network transaction precisely reliably universally securely. This fundamentally physically heavily ensures structural DRY (Don't Repeat Yourself) compliance implicitly purely successfully inherently safely cleanly keeping completely complex explicit core network methods singularly highly purely focused directly explicitly completely onto primary isolated unique explicit business internal process behaviors purely globally reliably.
+
+
