@@ -114,9 +114,9 @@ All custom and global errors across the API are caught and returned in the follo
 ## Section 6 — Question Answers
 
 ### Q1.1 — JAX-RS Lifecycle
-By default, JAX-RS creates a new resource class instance for every incoming HTTP request, meaning it does not operate as a singleton. Whenever a client hits an endpoint, the runtime instantiates the relevant resource class, executes the matched method, and immediately discards the instance once the response is sent.
+By default, JAX-RS creates a new resource class instance for every incoming HTTP request, which means it doesnt operate as a singleton. Whenever a client hits an endpoint, the runtime instantiates the relevant resource class, executes the matched method, and immediately discards the instance after the response is sent.
 
-Because of this request-scoped lifecycle, you cannot store shared data or state directly inside the resource class itself as fields—it would be permanently lost after each request finishes. To solve this, the API delegates data storage to a separate singleton `DataStore` class that utilizes a static `ConcurrentHashMap` to persist data globally across the application's runtime.
+Because of this request scoped lifecycle, you cannot store shared data or state directly inside the resource class itself as fields. It would be permanently lost after each request finishes. To solve this, the API delegates data storage to a separate singleton `DataStore` class that utilizes a static `ConcurrentHashMap` to persist data globally across the application's runtime.
 
 Using a `ConcurrentHashMap` is critical because it allows multiple threads representing concurrent client requests to read and write simultaneously without corrupting the data structure. Without this thread-safe approach, two requests arriving at the exact same millisecond could overwrite each other's data, causing a race condition. Additionally, generating unique IDs is safely managed using structures like `AtomicLong`.
 
