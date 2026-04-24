@@ -6,7 +6,16 @@ The Smart Campus API is a robust, RESTful backend designed to facilitate the mon
 
 The system comprises three primary resources: Room, Sensor, and SensorReading. Built on Java EE 8, the API leverages the JAX-RS (Jersey) framework and is managed using Maven. Currently, all data is stored in-memory using thread-safe data structures, meaning the state is highly performant but transient across server restarts. The base URL for interacting with the API is `http://localhost:8080/smartCampus_w2153601/api/v1`.
 
-## Section 2 — Technology Stack
+## Section 2 — How to Build and Run the Project
+
+1. First, we open the project folder in a terminal and make sure we are in the root directory of the coursework project.
+2. Next, we check that Java 8 and Maven are installed, because the project is built with Maven and targets Java 8.
+3. Then, we build the project by running `mvn clean package`. This creates the WAR file for the application in the `target` folder.
+4. After that, we take the generated WAR file and deploy it to a compatible server such as GlassFish or Payara.
+5. Once the server finishes starting, we open the application in the browser using `http://localhost:8080/smartCampus_w2153601/api/v1`.
+6. Finally, we test the API by sending requests to the endpoints described in the sections below.
+
+## Section 3 — Technology Stack
 
 | Component | Technology |
 | :--- | :--- |
@@ -18,7 +27,7 @@ The system comprises three primary resources: Room, Sensor, and SensorReading. B
 | **Packaging** | WAR |
 
 
-## Section 3 — Endpoint Reference
+## Section 4 — Endpoint Reference
 
 ### Group 1 — Discovery
 | Method | Endpoint | Description | Expected Response |
@@ -47,7 +56,7 @@ The system comprises three primary resources: Room, Sensor, and SensorReading. B
 | GET | `/api/v1/sensors/{sensorId}/readings` | Retrieves the history of readings for a specific sensor. | 200 OK |
 | POST| `/api/v1/sensors/{sensorId}/readings` | Records a new reading and updates the sensor's current value. | 201 Created |
 
-## Section 4 — curl Commands
+## Section 5 — curl Commands
 
 ```bash
 # 1. GET the discovery endpoint (Retrieves API metadata and links)
@@ -87,7 +96,7 @@ curl -X POST http://localhost:8080/smartCampus_w2153601/api/v1/sensors/99/readin
   -d '{"value": 0, "timestamp": "2026-04-22T10:45:00Z"}'
 ```
 
-## Section 5 — Error Response Format
+## Section 6 — Error Response Format
 
 All custom and global errors across the API are caught and returned in the following standardized JSON structure:
 
@@ -111,7 +120,7 @@ All custom and global errors across the API are caught and returned in the follo
 | **422 Unprocessable Entity** | Valid JSON syntax sent to the absolutely correct endpoint, but explicitly references a missing reference dependency (like `roomId`). |
 | **500 Internal Server Error** | Unexpected and completely unhandled server failure, gracefully caught globally to cleanly hide backend stack traces. |
 
-## Section 6 — Question Answers
+## Section 7 — Question Answers
 
 ### Q1.1 — JAX-RS Lifecycle
 By default, JAX-RS creates a new resource class instance for every incoming HTTP request, which means it doesnt operate as a singleton. Whenever a client hits an endpoint, the runtime instantiates the relevant resource class, executes the matched method, and immediately discards the instance after the response is sent.
